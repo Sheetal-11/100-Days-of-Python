@@ -69,7 +69,34 @@ def should_continue():
         print("Please type either 'hit' or 'stand'\n")
         choice = should_continue()
     return choice
-     
+
+
+def declare_winner(player_total, dealer_total, dealer_cards):
+    
+    dealer_cards, dealer_total = deal_hands(dealer_cards)
+    print(f"\nDealer's hand = {dealer_cards} \t Dealer's score = {dealer_total}\n")
+    
+    if player_total > 21:
+        print("You lose!")
+          
+    else:
+        while dealer_total < 17:
+            print("Dealer is taking another card..")
+            dealer_cards, dealer_total = deal_hands(dealer_cards)
+            print(f"Dealer's hand = {dealer_cards} \t Dealer's score = {dealer_total}\n")
+        
+        print(f"Your score: {player_total} \t Dealer's score: {dealer_total}\n")
+        if dealer_total > 21:
+            print("Yay! You win!")
+        else:
+            if player_total > dealer_total:
+                print("Yay! You win!")
+            elif player_total == 21 and dealer_total == 21:
+                print("Draw")
+            else:
+                print("You lose!")
+            
+    
 
 def play_game():
     
@@ -98,10 +125,11 @@ def play_game():
             print(f"\n\nYour hand = {p_cards} \t Your score = {p_score}")
             print(f"Dealer's hand = {d_cards} \t Dealer's score = {d_score}\n")
             if p_score > 21:
-                print("You lose")
-                break
+                declare_winner(p_score, d_score, d_cards)
             else:
                 stand = should_continue()
+        
+        declare_winner(p_score, d_score, d_cards)
         
         
     elif play == "n":
