@@ -53,7 +53,23 @@ def deal_hands(hand):
     hand = case_11(hand)
     sum = score(hand)
     return hand, sum
-      
+
+
+def should_continue():
+    '''
+    Ask the user to hit or to stand
+    '''
+    prompt = input("Do you want to 'hit' or 'stand'?: ").lower()
+    
+    if prompt == "hit":
+        choice = False
+    elif prompt == "stand":
+        choice = True
+    else:
+        print("Please type either 'hit' or 'stand'\n")
+        choice = should_continue()
+    return choice
+     
 
 def play_game():
     
@@ -71,9 +87,13 @@ def play_game():
             p_cards, p_score = deal_hands(p_cards)
         d_cards, d_score = deal_hands(d_cards)
         print(f"\nYour hand = {p_cards} \t Your score = {p_score}")
-        print(f"Dealer's hand = {d_cards} \t Dealer's score = {d_score}\n")        
-    
-    
+        print(f"Dealer's hand = {d_cards} \t Dealer's score = {d_score}\n")
+        
+        #A flag that tells if the player wants to stand or not
+        stand = should_continue()
+        print(stand)
+        
+        
     elif play == "n":
         print("Have a good day!")
         
