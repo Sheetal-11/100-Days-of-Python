@@ -19,6 +19,7 @@ def pick_card():
     cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
     return random.choice(cards)
 
+
 def score(hand):
     '''
     returns the sum of all the values in a given hand
@@ -30,9 +31,26 @@ def score(hand):
     return sum
 
 
+def case_11(given_hand):
+    
+    # print("caee_11")
+    # print(f"Before : {given_hand}")
+    
+    if 11 in given_hand:
+        total = score(given_hand)
+        if total > 21:
+            for i in range(len(given_hand)):
+                if given_hand[i] == 11:
+                    given_hand[i] = 1
+                    break
+    # print(f"After : {given_hand}")
+    return given_hand
+
+        
 def deal_hands(hand):
     
     hand.append(pick_card())
+    hand = case_11(hand)
     sum = score(hand)
     return hand, sum
       
