@@ -91,7 +91,17 @@ def play_game():
         
         #A flag that tells if the player wants to stand or not
         stand = should_continue()
-        print(stand)
+        
+        while not stand:
+            #while the player selects hit
+            p_cards, p_score = deal_hands(p_cards)
+            print(f"\n\nYour hand = {p_cards} \t Your score = {p_score}")
+            print(f"Dealer's hand = {d_cards} \t Dealer's score = {d_score}\n")
+            if p_score > 21:
+                print("You lose")
+                break
+            else:
+                stand = should_continue()
         
         
     elif play == "n":
