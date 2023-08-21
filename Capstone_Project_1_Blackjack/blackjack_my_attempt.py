@@ -60,6 +60,7 @@ def should_continue():
     Ask the user to hit or to stand
     '''
     prompt = input("Do you want to 'hit' or 'stand'?: ").lower()
+    print('____________________________________________')
     
     if prompt == "hit":
         choice = False
@@ -74,7 +75,7 @@ def should_continue():
 def declare_winner(player_total, dealer_total, dealer_cards):
     
     dealer_cards, dealer_total = deal_hands(dealer_cards)
-    print(f"\nDealer's hand = {dealer_cards} \t Dealer's score = {dealer_total}\n")
+    print(f"\nDealer's hand = {dealer_cards} \t Dealer's score = {dealer_total}")
     
     if player_total > 21:
         print("You lose!")
@@ -83,9 +84,10 @@ def declare_winner(player_total, dealer_total, dealer_cards):
         while dealer_total < 17:
             print("Dealer is taking another card..")
             dealer_cards, dealer_total = deal_hands(dealer_cards)
-            print(f"Dealer's hand = {dealer_cards} \t Dealer's score = {dealer_total}\n")
+            print(f"Dealer's hand = {dealer_cards} \t Dealer's score = {dealer_total}")
         
-        print(f"Your score: {player_total} \t Dealer's score: {dealer_total}\n")
+        print('____________________________________________')
+        print(f"\nYour score: {player_total} \t Dealer's score: {dealer_total}\n")
         if dealer_total > 21:
             print("Yay! You win!")
         else:
@@ -98,47 +100,54 @@ def declare_winner(player_total, dealer_total, dealer_cards):
             
     
 
+def game_start():
+    
+    print("\n\n")
+    print("Welcome to the Blackjack game!")
+        
+    #Intialize player's and dealer's cards
+    p_cards = []
+    d_cards = []
+    
+    # Deal hands and calculate scores
+    for _ in range(2):
+        p_cards, p_score = deal_hands(p_cards)
+    d_cards, d_score = deal_hands(d_cards)
+    print(f"\nYour hand = {p_cards} \t Your score = {p_score}")
+    print(f"Dealer's hand = {d_cards} \t Dealer's score = {d_score}\n")
+    
+    #A flag that tells if the player wants to stand or not
+    stand = should_continue()
+    
+    while not stand:
+        #while the player selects hit
+        p_cards, p_score = deal_hands(p_cards)
+        print(f"\n\nYour hand = {p_cards} \t Your score = {p_score}")
+        print(f"Dealer's hand = {d_cards} \t Dealer's score = {d_score}\n")
+        if p_score > 21:
+            declare_winner(p_score, d_score, d_cards)
+        else:
+            stand = should_continue()
+    
+    declare_winner(p_score, d_score, d_cards)
+
+
 def play_game():
     
-    print("Do you wanna play?")
-    play = input("y/n: ").lower()
+    end_of_game = False
     
-    if play == "y":
+    while not end_of_game:
+        print("\nDo you want to play Blackjack?")
+        play = input("y/n: ").lower()
         
-        #Intialize player's and dealer's cards and scores
-        p_cards = []
-        d_cards = []
-        
-        # Deal hands and calculate scores
-        for _ in range(2):
-            p_cards, p_score = deal_hands(p_cards)
-        d_cards, d_score = deal_hands(d_cards)
-        print(f"\nYour hand = {p_cards} \t Your score = {p_score}")
-        print(f"Dealer's hand = {d_cards} \t Dealer's score = {d_score}\n")
-        
-        #A flag that tells if the player wants to stand or not
-        stand = should_continue()
-        
-        while not stand:
-            #while the player selects hit
-            p_cards, p_score = deal_hands(p_cards)
-            print(f"\n\nYour hand = {p_cards} \t Your score = {p_score}")
-            print(f"Dealer's hand = {d_cards} \t Dealer's score = {d_score}\n")
-            if p_score > 21:
-                declare_winner(p_score, d_score, d_cards)
-            else:
-                stand = should_continue()
-        
-        declare_winner(p_score, d_score, d_cards)
-        
-        
-    elif play == "n":
-        print("Have a good day!")
-        
-    else:
-        print("Please choose either 'y' or 'n'\n")
-        play_game()
-
+        if play == "y":
+            game_start()
+        elif play == "n":
+            end_of_game = True
+            print("Have a good day!")
+        else:
+            print("Please type either 'y' or 'n'\n")
 
 play_game()
+            
 
