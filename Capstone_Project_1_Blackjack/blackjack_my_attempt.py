@@ -12,7 +12,22 @@
 ## Cards are not removed from the deck as they are drawn.
 ## The computer is the dealer.
 
+def play_game():
+    
+    print("Do you wanna play?")
+    play = input("y/n: ").lower()
+    
+    if play == "y":
+        ### Write all the code here.
+        print("ok")
+    
+    elif play == "n":
+        print("Have a good day!")
+        
+    else:
+        print("Please choose either 'y' or 'n'\n")
+        play_game()
 
 
-
+play_game()
 
