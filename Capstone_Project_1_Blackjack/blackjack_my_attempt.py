@@ -12,14 +12,37 @@
 ## Cards are not removed from the deck as they are drawn.
 ## The computer is the dealer.
 
+import random
+
+def pick_card():
+    
+    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    return random.choice(cards)
+
+def deal_hands(hand):
+    
+    hand.append(pick_card())
+    return hand
+      
+
 def play_game():
     
     print("Do you wanna play?")
     play = input("y/n: ").lower()
     
     if play == "y":
-        ### Write all the code here.
-        print("ok")
+        
+        #Intialize player's and dealer's cards and scores
+        p_cards = []
+        d_cards = []
+        
+        # Deal hands
+        for _ in range(2):
+            p_cards = deal_hands(p_cards)
+            d_cards = deal_hands(d_cards)
+        print(f"Your hand = {p_cards}")
+        print(f"Dealer's hand = {d_cards}")        
+    
     
     elif play == "n":
         print("Have a good day!")
