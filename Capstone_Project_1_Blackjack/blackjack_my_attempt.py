@@ -79,6 +79,8 @@ def declare_winner(player_total, dealer_total, dealer_cards):
     
     if player_total > 21:
         print("You lose!")
+    elif player_total == 21 and dealer_total < 21:
+        print("Yay! You win!")
           
     else:
         while dealer_total < 17:
@@ -93,7 +95,7 @@ def declare_winner(player_total, dealer_total, dealer_cards):
         else:
             if player_total > dealer_total:
                 print("Yay! You win!")
-            elif player_total == 21 and dealer_total == 21:
+            elif player_total == dealer_total:
                 print("Draw")
             else:
                 print("You lose!")
@@ -115,6 +117,10 @@ def game_start():
     d_cards, d_score = deal_hands(d_cards)
     print(f"\nYour hand = {p_cards} \t Your score = {p_score}")
     print(f"Dealer's hand = {d_cards} \t Dealer's score = {d_score}\n")
+    
+    #If player scores a natural
+    if p_score == 21:
+        declare_winner(p_score, d_score, d_cards)
     
     #A flag that tells if the player wants to stand or not
     stand = should_continue()
