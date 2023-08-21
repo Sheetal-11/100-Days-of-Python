@@ -22,7 +22,12 @@ def pick_card():
 def deal_hands(hand):
     
     hand.append(pick_card())
-    return hand
+    
+    #Sum all the elements in the hand
+    sum = 0
+    for element in hand:
+        sum += element
+    return hand, sum
       
 
 def play_game():
@@ -36,12 +41,12 @@ def play_game():
         p_cards = []
         d_cards = []
         
-        # Deal hands
+        # Deal hands and calculate scores
         for _ in range(2):
-            p_cards = deal_hands(p_cards)
-            d_cards = deal_hands(d_cards)
-        print(f"Your hand = {p_cards}")
-        print(f"Dealer's hand = {d_cards}")        
+            p_cards, p_score = deal_hands(p_cards)
+        d_cards, d_score = deal_hands(d_cards)
+        print(f"\nYour hand = {p_cards} \t Your score = {p_score}")
+        print(f"Dealer's hand = {d_cards} \t Dealer's score = {d_score}\n")        
     
     
     elif play == "n":
