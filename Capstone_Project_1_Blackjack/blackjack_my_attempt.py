@@ -19,14 +19,21 @@ def pick_card():
     cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
     return random.choice(cards)
 
-def deal_hands(hand):
+def score(hand):
+    '''
+    returns the sum of all the values in a given hand
     
-    hand.append(pick_card())
-    
-    #Sum all the elements in the hand
+    '''
     sum = 0
     for element in hand:
         sum += element
+    return sum
+
+
+def deal_hands(hand):
+    
+    hand.append(pick_card())
+    sum = score(hand)
     return hand, sum
       
 
