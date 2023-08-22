@@ -24,5 +24,22 @@ while lives == 0:
     else:
         print("Please type a valid answer")
 
-print(f"lives = {lives}")
+while lives > 0:
+    print(f"You have {lives} attempts remaining.")
+    guess = int( input("\nGuess a number: "))
+    
+    if guess < num:
+        print("Too low")
+        print("Guess again")
+    elif guess > num:
+        print("Too high")
+        print("Guess again")
+    else:
+        print(f"You got it! The answer was {num}.")
+        break
+    
+    lives -= 1
+    
+if lives == 0:
+    print("You run out of guesses. You lose.")
 
