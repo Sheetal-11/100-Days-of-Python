@@ -130,8 +130,9 @@ def game_start():
         p_cards, p_score = deal_hands(p_cards)
         print(f"\n\nYour hand = {p_cards} \t Your score = {p_score}")
         print(f"Dealer's hand = {d_cards} \t Dealer's score = {d_score}\n")
-        if p_score > 21:
+        if p_score >= 21:
             declare_winner(p_score, d_score, d_cards)
+            return
         else:
             stand = should_continue()
     
