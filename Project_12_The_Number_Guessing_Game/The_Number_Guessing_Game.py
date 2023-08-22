@@ -1,14 +1,15 @@
 # The Number Guessing Game
 
 from random import randint
+from art_number_guessing_game import logo
 
 #Welcome
+print(logo)
 print("\nWelcome to the Number Guessing Game!")
 print("I'm thinking of a number between 1 and 100.")
 
 #Guess a number
 num = randint(1, 100)
-print(f"Pssst, the correct answer is {num}")
 
 #Set number of lives
 print("\nChoose your difficulty level")
@@ -42,4 +43,5 @@ while lives > 0:
     
 if lives == 0:
     print("You run out of guesses. You lose.")
+    print(f"The number was {num}.")
 
