@@ -37,6 +37,9 @@ score = 0
 while (not end_of_game) and (score != 49):
         
     B = pick_entry()
+    #This is to ensure that A and B are never the same
+    while (A == B):
+        B = pick_entry()
     
     print("___________________________________________________________")
     
