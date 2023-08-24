@@ -29,6 +29,7 @@ def user_choice(var_a, var_b):
     return choice
 
 
+print(logo)
 A = pick_entry()
 end_of_game = False
 score = 0
@@ -37,11 +38,11 @@ while (not end_of_game) and (score != 49):
         
     B = pick_entry()
     
-    print(f"\nCompare A: {A['name']}, a {A['description']}, from {A['country']}.")
-    print(f"Against B: {B['name']}, a {B['description']}, from {B['country']}.")
+    print("___________________________________________________________")
     
-    print(f"\nA follower count: {A['follower_count']}")
-    print(f"B follower count: {B['follower_count']}")
+    print(f"\nCompare A: {A['name']}, a {A['description']}, from {A['country']}.")
+    print(vs)
+    print(f"Against B: {B['name']}, a {B['description']}, from {B['country']}.")
     
     choice = user_choice(A, B)
     
