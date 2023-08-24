@@ -36,8 +36,24 @@ B = pick_entry()
 print(f"Compare A: {A['name']}, a {A['description']}, from {A['country']}.")
 print(f"Against B: {B['name']}, a {B['description']}, from {B['country']}.")
 
+print(f"A follower count: {A['follower_count']}")
+print(f"B follower count: {B['follower_count']}")
+
 choice = user_choice(A, B)
 print(choice)
+
+# Find the correct answer
+if A['follower_count'] > B['follower_count']:
+    answer = A
+else:
+    answer = B
+
+# Check if user's guess is right or wrong
+if answer['follower_count'] == choice['follower_count']:
+    print("You're right")
+else:
+    print("You're wrong.")
+
 
 
 
