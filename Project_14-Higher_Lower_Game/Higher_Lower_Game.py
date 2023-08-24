@@ -29,19 +29,18 @@ def user_choice(var_a, var_b):
     return choice
 
 
-print(logo)
 A = pick_entry()
 end_of_game = False
 score = 0
 
-while (not end_of_game) and (score != 49):
+while not end_of_game:
+    
+    print(logo)
         
     B = pick_entry()
     #This is to ensure that A and B are never the same
     while (A == B):
         B = pick_entry()
-    
-    print("___________________________________________________________")
     
     print(f"\nCompare A: {A['name']}, a {A['description']}, from {A['country']}.")
     print(vs)
@@ -54,6 +53,8 @@ while (not end_of_game) and (score != 49):
         answer = A
     else:
         answer = B
+        
+    print("________________________________________________________________")
     
     # Check if user's guess is right or wrong
     if answer['follower_count'] == choice['follower_count']:
@@ -64,9 +65,5 @@ while (not end_of_game) and (score != 49):
         print("You're wrong.")
         print(f"\nSorry, that's wrong. Final score = {score}")
         end_of_game = True
-
-if score == 49:
-    print("\nCongratualtions, you've won the game with a full score!")
-
 
 
