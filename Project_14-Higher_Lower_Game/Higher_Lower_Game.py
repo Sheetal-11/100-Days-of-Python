@@ -6,14 +6,16 @@ from random import randint
 
 # 4 keys: 'name', 'follower_count', 'description', 'country'
 
+data_copy = data
+
 def pick_entry():
     '''
     returns a random entry from data
     '''
     position = randint(0, len(data) -1)
     # to prevent an entry from repeating itself in a round
-    data.pop(position)
-    return data[position]
+    data_copy.pop(position)
+    return data_copy[position]
 
 def user_choice(var_a, var_b):
     '''
