@@ -2,21 +2,15 @@
 
 from game_data import data
 from art import logo, vs
-from random import randint
+import random
 
 # 4 keys: 'name', 'follower_count', 'description', 'country'
-
-data_copy = data
 
 def pick_entry():
     '''
     returns a random entry from data
     '''
-    position = randint(0, len(data_copy)-1)
-    entry = data_copy[position]
-    # to prevent an entry from repeating itself in a round
-    data_copy.remove(entry)
-    return entry
+    return random.choice(data)
 
 def user_choice(var_a, var_b):
     '''
@@ -35,12 +29,12 @@ def user_choice(var_a, var_b):
     return choice
 
 
+A = pick_entry()
 end_of_game = False
 score = 0
 
 while (not end_of_game) and (score != 49):
         
-    A = pick_entry()
     B = pick_entry()
     
     print(f"\nCompare A: {A['name']}, a {A['description']}, from {A['country']}.")
@@ -61,6 +55,7 @@ while (not end_of_game) and (score != 49):
     if answer['follower_count'] == choice['follower_count']:
         score += 1
         print(f"\nYou're right. Current score = {score}")
+        A = B
     else:
         print("You're wrong.")
         print(f"\nSorry, that's wrong. Final score = {score}")
