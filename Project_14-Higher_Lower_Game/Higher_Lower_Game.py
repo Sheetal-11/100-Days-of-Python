@@ -11,6 +11,8 @@ def pick_entry():
     returns a random entry from data
     '''
     position = randint(0, len(data) -1)
+    # to prevent an entry from repeating itself in a round
+    data.pop(position)
     return data[position]
 
 def user_choice(var_a, var_b):
@@ -36,7 +38,7 @@ B = pick_entry()
 print(f"Compare A: {A['name']}, a {A['description']}, from {A['country']}.")
 print(f"Against B: {B['name']}, a {B['description']}, from {B['country']}.")
 
-print(f"A follower count: {A['follower_count']}")
+print(f"\nA follower count: {A['follower_count']}")
 print(f"B follower count: {B['follower_count']}")
 
 choice = user_choice(A, B)
