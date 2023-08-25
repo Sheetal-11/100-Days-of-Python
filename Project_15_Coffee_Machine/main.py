@@ -30,14 +30,21 @@ resources = {
     "coffee": 100,
 }
 
-# TODO 1. Prompt user by asking “ What would you like? (espresso/latte/cappuccino): ”
-# a. Check the user’s input to decide what to do next.
-# b. The prompt should show every time action has completed, e.g. once the drink is dispensed.
-# The prompt should show again to serve the next customer.
 
-# todo 2. Turn off the Coffee Machine by entering “ off ” to the prompt.
-# a. For maintainers of the coffee machine, they can use “off” as the secret word to turn off the machine.
-# Your code should end execution when this happens.
+turn_off = False
+
+while not turn_off:
+
+    print("\nWhat would you like? (espresso/latte/cappuccino)")
+    print("You can optionally type \n'E' for Espresso,\n'L' for Latte,\n'C' for Cappuccino")
+    prompt = input("Please enter: ").lower()
+
+    if prompt in ["espresso", "latte", "cappuccino", 'e', 'l', 'c']:
+        pass
+    elif prompt == "off":
+        turn_off = True
+    else:
+        print("Please enter a valid input.")
 
 # todo 3. Print report.
 # a. When the user enters “report” to the prompt, a report should be generated that shows the current
