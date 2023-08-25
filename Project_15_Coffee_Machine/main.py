@@ -68,6 +68,20 @@ def check_resources(coffee_type):
             return True
 
 
+def insert_coins():
+    """
+    Lets the user insert coins and returns the total money inserted
+    :return: total
+    """
+    print("Please insert coins")
+    quarters = int( input("How many quarters? "))
+    dimes = int( input("How many dimes? "))
+    nickles = int( input("How many nickles? "))
+    pennies = int( input("How many pennies? "))
+    total = (0.25 * quarters) + (0.10 * dimes) + (0.05 * nickles) + (0.01 * pennies)
+    return total
+
+
 money = 0
 turn_off = False
 
@@ -82,7 +96,8 @@ while not turn_off:
         # checks whether the resources are sufficient
         is_sufficient = check_resources(prompt)
         if is_sufficient:
-            pass
+            amount = round(insert_coins(), 2)
+            print(amount)
         else:
             print("If you'd like please select something else")
     elif prompt == "report":
@@ -92,13 +107,6 @@ while not turn_off:
     else:
         print("Please enter a valid input.")
 
-
-# todo 5. Process coins.
-# a. If there are sufficient resources to make the drink selected, then the program should prompt the user
-# to insert coins.
-# b. Remember that quarters = $0.25, dimes = $0.10, nickles = $0.05, pennies = $0.01
-# c. Calculate the monetary value of the coins inserted.
-# E.g. 1 quarter, 2 dimes, 1 nickel, 2 pennies = 0.25 + 0.1 x 2 + 0.05 + 0.01 x 2 = $0.52
 
 # todo 6. Check transaction successful?
 # a. Check that the user has inserted enough money to purchase the drink they selected.
