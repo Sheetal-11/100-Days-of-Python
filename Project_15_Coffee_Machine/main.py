@@ -40,12 +40,26 @@ def report():
     print(f"Money : ${'{:.2f}'.format(money)}")
 
 
+def suitable_format(letter):
+    """
+    If a user inputs the initial letter of coffee, it returns the full word that is the suitable format
+    """
+    if letter == "e":
+        return "espresso"
+    elif letter == "l":
+        return "latte"
+    else:
+        return "cappuccino"
+
+
 def check_resources(coffee_type):
     """
     Takes coffee type as input and returns a boolean based on the availability of the resources
     :param coffee_type: str
     :return: bool
     """
+    if coffee_type in ["e", "l", "c"]:
+        coffee_type = suitable_format(coffee_type)
     for resource in MENU[coffee_type]["ingredients"]:
         if MENU[coffee_type]["ingredients"][resource] > resources[resource]:
             print(f"Sorry there is not enough {resource}.")
