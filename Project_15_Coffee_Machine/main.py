@@ -30,10 +30,28 @@ resources = {
     "coffee": 100,
 }
 
+
 def report():
+    """
+    Prints the current status of resources
+    """
     for resource in resources:
         print(f"{resource.title()} : {resources[resource]}ml")
     print(f"Money : ${'{:.2f}'.format(money)}")
+
+
+def check_resources(coffee_type):
+    """
+    Takes coffee type as input and returns a boolean based on the availability of the resources
+    :param coffee_type: str
+    :return: bool
+    """
+    for resource in MENU[coffee_type]["ingredients"]:
+        if MENU[coffee_type]["ingredients"][resource] > resources[resource]:
+            print(f"Sorry there is not enough {resource}.")
+            return False
+        else:
+            return True
 
 
 money = 0
@@ -41,12 +59,18 @@ turn_off = False
 
 while not turn_off:
 
+    # Take user input
     print("\nWhat would you like? (espresso/latte/cappuccino)")
     print("You can optionally type \n'E' for Espresso,\n'L' for Latte,\n'C' for Cappuccino")
     prompt = input("Please enter: ").lower()
 
     if prompt in ["espresso", "latte", "cappuccino", 'e', 'l', 'c']:
-        pass
+        # checks whether the resources are sufficient
+        is_sufficient = check_resources(prompt)
+        if is_sufficient:
+            pass
+        else:
+            print("If you'd like please select something else")
     elif prompt == "report":
         report()
     elif prompt == "off":
@@ -54,12 +78,6 @@ while not turn_off:
     else:
         print("Please enter a valid input.")
 
-
-# todo 4. Check resources sufficient?
-# a. When the user chooses a drink, the program should check if there are enough resources to make that drink.
-# b. E.g. if Latte requires 200ml water but there is only 100ml left in the machine.
-# It should not continue to make the drink but print: “ Sorry there is not enough water. ”
-# c. The same should happen if another resource is depleted, e.g. milk or coffee.
 
 # todo 5. Process coins.
 # a. If there are sufficient resources to make the drink selected, then the program should prompt the user
