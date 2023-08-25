@@ -62,8 +62,9 @@ def check_resources(coffee_type):
     :param coffee_type: str
     :return: bool
     """
-    for resource in MENU[coffee_type]["ingredients"]:
-        if MENU[coffee_type]["ingredients"][resource] > resources[resource]:
+    ingredient = MENU[coffee_type]["ingredients"]
+    for resource in ingredient:
+        if ingredient[resource] > resources[resource]:
             print(f"Sorry there is not enough {resource}.")
             return False
         else:
