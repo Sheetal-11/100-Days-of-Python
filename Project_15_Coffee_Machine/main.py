@@ -135,7 +135,7 @@ while not turn_off:
             if tr_pass:
                 resources = update_stock(resources, prompt)
                 money += MENU[prompt]["cost"]
-                print(f"Here is your {prompt}. Enjoy!")
+                print(f"Here is your {prompt} ☕. Enjoy!")
 
         else:
             print("If you'd like please select something else")
