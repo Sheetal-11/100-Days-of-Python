@@ -36,7 +36,11 @@ def report():
     Prints the current status of resources
     """
     for resource in resources:
-        print(f"{resource.title()} : {resources[resource]}ml")
+        if resource == "coffee":
+            unit = "g"
+        else:
+            unit = "ml"
+        print(f"{resource.title()} : {resources[resource]}{unit}")
     print(f"Money : ${'{:.2f}'.format(money)}")
 
 
