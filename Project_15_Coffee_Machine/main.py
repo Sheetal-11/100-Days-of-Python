@@ -58,8 +58,6 @@ def check_resources(coffee_type):
     :param coffee_type: str
     :return: bool
     """
-    if coffee_type in ["e", "l", "c"]:
-        coffee_type = suitable_format(coffee_type)
     for resource in MENU[coffee_type]["ingredients"]:
         if MENU[coffee_type]["ingredients"][resource] > resources[resource]:
             print(f"Sorry there is not enough {resource}.")
@@ -74,12 +72,23 @@ def insert_coins():
     :return: total
     """
     print("Please insert coins")
-    quarters = int( input("How many quarters? "))
-    dimes = int( input("How many dimes? "))
-    nickles = int( input("How many nickles? "))
-    pennies = int( input("How many pennies? "))
+    quarters = int(input("How many quarters? "))
+    dimes = int(input("How many dimes? "))
+    nickles = int(input("How many nickles? "))
+    pennies = int(input("How many pennies? "))
     total = (0.25 * quarters) + (0.10 * dimes) + (0.05 * nickles) + (0.01 * pennies)
     return total
+
+
+def is_success(coffee, price):
+    if price < MENU[coffee]["cost"]:
+        print("Sorry that's not enough money. Money refunded.")
+        return False
+    else:
+        if price > MENU[coffee]["cost"]:
+            change = price - MENU[coffee]["cost"]
+            print(f"Here is ${'{:.2f}'.format(change)} dollars in change.")
+            return True
 
 
 money = 0
@@ -92,14 +101,25 @@ while not turn_off:
     print("You can optionally type \n'E' for Espresso,\n'L' for Latte,\n'C' for Cappuccino")
     prompt = input("Please enter: ").lower()
 
-    if prompt in ["espresso", "latte", "cappuccino", 'e', 'l', 'c']:
+    if prompt in ["espresso", "latte", "cappuccino", "e", "l", "c"]:
+
+        # if the user input only the initial letter, convert it into a suitable format
+        if prompt in ["e", "l", "c"]:
+            prompt = suitable_format(prompt)
+
         # checks whether the resources are sufficient
         is_sufficient = check_resources(prompt)
         if is_sufficient:
             amount = round(insert_coins(), 2)
-            print(amount)
+            # Check whether the transaction was successful
+            tr_pass = is_success(prompt, amount)
+            if tr_pass:
+                money += MENU[prompt]["cost"]
+                print(f"Updated money: {money}")
+
         else:
             print("If you'd like please select something else")
+
     elif prompt == "report":
         report()
     elif prompt == "off":
@@ -109,17 +129,12 @@ while not turn_off:
 
 
 # todo 6. Check transaction successful?
-# a. Check that the user has inserted enough money to purchase the drink they selected.
-# E.g Latte cost $2.50, but they only inserted $0.52 then after counting the coins the program should say
-# “ Sorry that's not enough money. Money refunded. ”.
 # b. But if the user has inserted enough money, then the cost of the drink gets added to the machine
 # as the profit and this will be reflected the next time “report” is triggered. E.g.
 # Water: 100ml
 # Milk: 50ml
 # Coffee: 76g
 # Money: $2.5
-# c. If the user has inserted too much money, the machine should offer change.
-# E.g. “Here is $2.45 dollars in change.” The change should be rounded to 2 decimal places.
 
 # todo 7. Make Coffee.
 # a. If the transaction is successful and there are enough resources to make the drink the user selected,
