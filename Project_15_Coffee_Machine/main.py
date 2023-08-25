@@ -91,6 +91,20 @@ def is_success(coffee, price):
             return True
 
 
+def update_stock(stock, coffee):
+    """
+    Takes in resources (dict) and coffee (str) and based on the coffee type,
+    it deducts the ingredient quantities and returns the updated resources
+    :param stock: dict : current resources
+    :param coffee: str : coffee type
+    :return: dict : updated resources
+    """
+    for element in stock:
+        if element in MENU[coffee]["ingredients"]:
+            stock[element] -= MENU[coffee]["ingredients"][element]
+    return stock
+
+
 money = 0
 turn_off = False
 
@@ -114,8 +128,9 @@ while not turn_off:
             # Check whether the transaction was successful
             tr_pass = is_success(prompt, amount)
             if tr_pass:
+                resources = update_stock(resources, prompt)
                 money += MENU[prompt]["cost"]
-                print(f"Updated money: {money}")
+                report()
 
         else:
             print("If you'd like please select something else")
@@ -127,14 +142,6 @@ while not turn_off:
     else:
         print("Please enter a valid input.")
 
-
-# todo 6. Check transaction successful?
-# b. But if the user has inserted enough money, then the cost of the drink gets added to the machine
-# as the profit and this will be reflected the next time “report” is triggered. E.g.
-# Water: 100ml
-# Milk: 50ml
-# Coffee: 76g
-# Money: $2.5
 
 # todo 7. Make Coffee.
 # a. If the transaction is successful and there are enough resources to make the drink the user selected,
