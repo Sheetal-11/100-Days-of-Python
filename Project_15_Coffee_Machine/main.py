@@ -30,7 +30,13 @@ resources = {
     "coffee": 100,
 }
 
+def report():
+    for resource in resources:
+        print(f"{resource.title()} : {resources[resource]}ml")
+    print(f"Money : ${'{:.2f}'.format(money)}")
 
+
+money = 0
 turn_off = False
 
 while not turn_off:
@@ -41,18 +47,13 @@ while not turn_off:
 
     if prompt in ["espresso", "latte", "cappuccino", 'e', 'l', 'c']:
         pass
+    elif prompt == "report":
+        report()
     elif prompt == "off":
         turn_off = True
     else:
         print("Please enter a valid input.")
 
-# todo 3. Print report.
-# a. When the user enters “report” to the prompt, a report should be generated that shows the current
-# resource values. e.g.
-# Water: 100ml
-# Milk: 50ml
-# Coffee: 76g
-# Money: $2.5
 
 # todo 4. Check resources sufficient?
 # a. When the user chooses a drink, the program should check if there are enough resources to make that drink.
