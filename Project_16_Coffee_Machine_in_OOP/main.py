@@ -2,7 +2,6 @@ from menu import Menu, MenuItem
 from coffee_maker import CoffeeMaker
 from money_machine import MoneyMachine
 
-
 coffee_maker = CoffeeMaker()
 money_machine = MoneyMachine()
 menu = Menu()
@@ -25,8 +24,8 @@ while not turn_off:
         # Returns a MenuItem object if it exists, otherwise returns None.
         coffee = menu.find_drink(prompt)
         if coffee_maker.is_resource_sufficient(coffee):
-            print(money_machine.make_payment(coffee.cost))
-            print("meaning payment is successful")
+            if money_machine.make_payment(coffee.cost):
+                coffee_maker.make_coffee(coffee)
 
     else:
         print("Please enter a valid option.")
