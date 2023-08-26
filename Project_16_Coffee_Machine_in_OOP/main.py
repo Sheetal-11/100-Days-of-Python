@@ -2,6 +2,7 @@ from menu import Menu, MenuItem
 from coffee_maker import CoffeeMaker
 from money_machine import MoneyMachine
 
+
 coffee_maker = CoffeeMaker()
 money_machine = MoneyMachine()
 menu = Menu()
@@ -20,11 +21,12 @@ while not turn_off:
         turn_off = True
 
     elif prompt in ["espresso", "latte", "cappuccino"]:
+        # Searches the menu for a particular drink by name.
+        # Returns a MenuItem object if it exists, otherwise returns None.
         coffee = menu.find_drink(prompt)
-        print("coffee = ", coffee)
-        print("coffee.name = ", coffee.name)
-        print("coffee.cost = ", coffee.cost)
-        print("coffee.ingredients = ", coffee.ingredients)
+        if coffee_maker.is_resource_sufficient(coffee):
+            print(money_machine.make_payment(coffee.cost))
+            print("meaning payment is successful")
 
     else:
         print("Please enter a valid option.")
