@@ -28,6 +28,9 @@ class QuizBrain:
         self.check_answer(user_answer, current_question.answer)
 
     def check_answer(self, user_answer, correct_answer):
+        """
+        Checks if the user has answered correctly and according reflects score
+        """
         if user_answer.lower() == correct_answer.lower():
             self.score += 1
             print("You got it right!")
