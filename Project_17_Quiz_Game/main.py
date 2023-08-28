@@ -6,8 +6,8 @@ question_bank = []
 
 for entry in question_data:
     # Add all the entries in question_data to a list question_bank as an instance of Question class
-    question = entry["text"]
-    answer = entry["answer"]
+    question = entry["question"]
+    answer = entry["correct_answer"]
     new_question = Question(question, answer)
     question_bank.append(new_question)
 
