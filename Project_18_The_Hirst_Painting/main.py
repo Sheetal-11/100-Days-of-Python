@@ -11,6 +11,16 @@
 #     rgb_colors.append(new_color)
 #
 # print(rgb_colors)
+# -------------------------------------
+
+# We will create a 10 x 10 dot matrix
+# Each dot is 20 in size and is 50 distance apart
+from turtle import Turtle, Screen
+import turtle
+import random
+
+t = Turtle()
+turtle.colormode(255)
 
 color_list = [
     (202, 164, 110), (149, 75, 50), (222, 201, 136), (53, 93, 123), (170, 154, 41), (138, 31, 20), (134, 163, 184),
@@ -18,3 +28,14 @@ color_list = [
     (54, 45, 50), (101, 75, 77), (183, 205, 171), (36, 60, 74), (19, 86, 89), (82, 148, 129), (147, 17, 19),
     (27, 68, 102), (12, 70, 64), (107, 127, 153),  (176, 192, 208), (168, 99, 102)
 ]
+
+for _ in range(10):
+    # Create one line of 10 dots
+    color = random.choice(color_list)
+    t.dot(20, color)
+    t.up()
+    t.forward(50)
+    t.down()
+
+screen = Screen()
+screen.exitonclick()
