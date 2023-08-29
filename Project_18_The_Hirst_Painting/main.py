@@ -20,7 +20,10 @@ import turtle
 import random
 
 t = Turtle()
+t.speed("fastest")
+t.hideturtle()
 turtle.colormode(255)
+t.up()
 
 color_list = [
     (202, 164, 110), (149, 75, 50), (222, 201, 136), (53, 93, 123), (170, 154, 41), (138, 31, 20), (134, 163, 184),
@@ -29,13 +32,16 @@ color_list = [
     (27, 68, 102), (12, 70, 64), (107, 127, 153),  (176, 192, 208), (168, 99, 102)
 ]
 
-for _ in range(10):
-    # Create one line of 10 dots
-    color = random.choice(color_list)
-    t.dot(20, color)
-    t.up()
-    t.forward(50)
-    t.down()
+y = 0
+for line_number in range(10):
+    # Change line number:
+    t.goto(-250, -250+y)
+    for _ in range(10):
+        # Create one line of 10 dots
+        color = random.choice(color_list)
+        t.dot(20, color)
+        t.forward(50)
+    y += 50
 
 screen = Screen()
 screen.exitonclick()
