@@ -13,8 +13,6 @@
 # print(rgb_colors)
 # -------------------------------------
 
-# We will create a 10 x 10 dot matrix
-# Each dot is 20 in size and is 50 distance apart
 from turtle import Turtle, Screen
 import turtle
 import random
@@ -23,7 +21,7 @@ t = Turtle()
 t.speed("fastest")
 t.hideturtle()
 turtle.colormode(255)
-t.up()
+t.up()  # Turtle can put dots with pen up
 
 color_list = [
     (202, 164, 110), (149, 75, 50), (222, 201, 136), (53, 93, 123), (170, 154, 41), (138, 31, 20), (134, 163, 184),
@@ -32,16 +30,22 @@ color_list = [
     (27, 68, 102), (12, 70, 64), (107, 127, 153),  (176, 192, 208), (168, 99, 102)
 ]
 
+dimension = 20   # number x number dot matrix
+gap = 30   # gap between dots and lines
+
+start_x = - (dimension * gap) / 2
+start_y = - (dimension * gap) / 2
+
 y = 0
-for line_number in range(10):
+for line_number in range(dimension):    # Number of lines
     # Change line number:
-    t.goto(-250, -250+y)
-    for _ in range(10):
+    t.goto(start_x, start_y+y)
+    for _ in range(dimension):    # Number of dots in a line
         # Create one line of 10 dots
         color = random.choice(color_list)
-        t.dot(20, color)
-        t.forward(50)
-    y += 50
+        t.dot(10, color)
+        t.forward(gap)
+    y += gap
 
 screen = Screen()
 screen.exitonclick()
