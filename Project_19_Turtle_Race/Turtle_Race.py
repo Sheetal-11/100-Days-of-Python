@@ -22,12 +22,23 @@ for new_color in colors:
 is_race_on = False
 
 if user_bet:
+    is_race_on = True
 
-! The {winning_color} turtle is the winner!")
+while is_race_on:
+    # Race starts
+    for turtle in all_turtles:
+        # End the race if one of the turtles reaches the finish line
+        if turtle.xcor() > 230:
+            is_race_on = False
+            # Declare whether the user won the bet
+            winning_color = turtle.pencolor()
+            if user_bet == winning_color:
+                print(f"You've won! The {winning_color} turtle is the winner!")
+            else:
+                print(f"You've lost! The {winning_color} turtle is the winner!")
 
         # turtle.speed("slow")
         rand_distance = randint(0, 10)
         turtle.forward(rand_distance)
-
 
 screen.exitonclick()
