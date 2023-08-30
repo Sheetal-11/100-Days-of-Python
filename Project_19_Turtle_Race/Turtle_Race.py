@@ -22,14 +22,8 @@ for new_color in colors:
 is_race_on = False
 
 if user_bet:
-    is_race_on = True
 
-while is_race_on:
-    # Race starts
-    for turtle in all_turtles:
-        # End the race if one of the turtles reaches the finish line
-        if turtle.xcor() > 230:
-            is_race_on = False
+! The {winning_color} turtle is the winner!")
 
         # turtle.speed("slow")
         rand_distance = randint(0, 10)
