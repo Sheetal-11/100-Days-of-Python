@@ -12,11 +12,11 @@ def backwards():
     tim.backward(10)
 
 
-def counter_clockwise():
+def turn_left():
     tim.left(10)
 
 
-def clockwise():
+def turn_right():
     tim.right(10)
 
 
@@ -27,7 +27,7 @@ def clear_drawing():
 screen.listen()
 screen.onkeypress(key="w", fun=forwards)
 screen.onkeypress(key="s", fun=backwards)
-screen.onkeypress(key="a", fun=counter_clockwise)
-screen.onkeypress(key="d", fun=clockwise)
+screen.onkeypress(key="a", fun=turn_left)
+screen.onkeypress(key="d", fun=turn_right)
 screen.onkeypress(key="c", fun=clear_drawing)
 screen.exitonclick()
