@@ -4,7 +4,13 @@ from random import randint
 screen = Screen()
 screen.setup(width=500, height=400)   # set screen size
 # Bring up a pop-up
-user_bet = screen.textinput(title="Make your bet", prompt="Which turtle will win the race? Enter a color: ")
+names_string = screen.textinput(title="Enter names", prompt="Enter all the names in one line separated by space")
+names = names_string.split(" ")
+
+bets = {}
+
+for name in names:
+    bets[name] = screen.textinput(title="Make your bet", prompt=f"Enter {name}'s bet: ")
 
 all_turtles = []   # list where we will store all turtle objects
 colors = ["violet", "indigo", "blue", "green", "yellow", "orange", "red"]
@@ -21,7 +27,7 @@ for new_color in colors:
 
 is_race_on = False
 
-if user_bet:
+if names_string:
     is_race_on = True
 
 while is_race_on:
@@ -32,10 +38,12 @@ while is_race_on:
             is_race_on = False
             # Declare whether the user won the bet
             winning_color = turtle.pencolor()
-            if user_bet == winning_color:
-                print(f"You've won! The {winning_color} turtle is the winner!")
+            if winning_color in bets.values():
+                for name in bets:
+                    if bets[name] == winning_color:
+                        print(f"{name} won! The {winning_color} turtle is the winner!")
             else:
-                print(f"You've lost! The {winning_color} turtle is the winner!")
+                print(f"You've all lost! The {winning_color} turtle is the winner!")
 
         # turtle.speed("slow")
         rand_distance = randint(0, 10)
