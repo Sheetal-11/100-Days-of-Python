@@ -1,4 +1,4 @@
-Makfrom turtle import Turtle, Screen
+from turtle import Turtle, Screen
 
 tim = Turtle()
 screen = Screen()
@@ -13,21 +13,21 @@ def backwards():
 
 
 def counter_clockwise():
-    pass
+    tim.left(10)
 
 
 def clockwise():
-    pass
+    tim.right(10)
 
 
 def clear_drawing():
-    pass
+    tim.reset()
 
 
 screen.listen()
 screen.onkeypress(key="w", fun=forwards)
 screen.onkeypress(key="s", fun=backwards)
-screen.onkeypress(key="c", fun=clear_drawing)
 screen.onkeypress(key="a", fun=counter_clockwise)
 screen.onkeypress(key="d", fun=clockwise)
+screen.onkeypress(key="c", fun=clear_drawing)
 screen.exitonclick()
